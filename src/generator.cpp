@@ -29,6 +29,7 @@
 #include "../include/sudoku_io.h"
 #include <random>
 #include <bitset>
+#include <algorithm>
 
 using namespace std;
 
@@ -56,7 +57,16 @@ std::vector<int> getShuffledVector() {
      */
     // Dummy implementation:
     // Temporary static return for testing
-    return {3, 1, 4, 2, 7, 6, 5, 9, 8};
+    // return {3, 1, 4, 2, 7, 6, 5, 9, 8};
+
+    vector<int> nums = {1,2,3,4,5,6,7,8,9};
+    
+    static std::random_device rd;  
+    static std::mt19937 g(rd());   
+
+    std::shuffle(nums.begin(), nums.end(), g); // Shuffle the vector
+
+    return nums; // Return shuffled vector
 }
 
 
@@ -252,4 +262,9 @@ int** generateBoard(const int& empty_boxes){
     BOARD[8] = new int[9] {0, 0, 0, 0, 6, 0, 1, 0, 0};
 
     return BOARD;
+}
+
+int main(){
+
+    return 0;
 }
