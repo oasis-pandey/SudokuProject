@@ -29,8 +29,19 @@
 int** getEmptyBoard();
 
 /**
-  * TODO: Provide appropriate Documentation, see other examples provided within the projects
+  * @brief shuffles a array containing number 1 to 9
+  * 
+  * This function shuffles a vector of integers from number 1 to 9 randomly which will later 
+  * be used to fill up the board.
+  * It generates a random number from a hardware-based source. It might be time, cpu clock 
+  * speed, temperature readings etc.
+  * mt19937 is a Mersenne Twister random number generator fast and high-quality
+  * randomness. The seed (rd()) ensures different random outputs in each execution.
+  * 
+  * @return A shuffled vector of integers from number 1 to 9. 
+  * 
   */
+ 
 std::vector<int> getShuffledVector();
 
 /**
