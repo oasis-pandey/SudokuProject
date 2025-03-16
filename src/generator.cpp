@@ -61,8 +61,8 @@ std::vector<int> getShuffledVector() {
 
     vector<int> nums = {1,2,3,4,5,6,7,8,9};
     
-    static std::random_device rd;  
-    static std::mt19937 g(rd());   
+    random_device rd;  
+    mt19937 g(rd());   
 
     std::shuffle(nums.begin(), nums.end(), g); // Shuffle the vector
 
@@ -217,13 +217,28 @@ void deleteRandomItems(int** BOARD, const int& n) {
      * @param BOARD A 9x9 Sudoku board.
      * @param n The number of cells to delete (should be between 1 and 81).
      */
+    int count = 0;
+    while(count < n){
+        // ADD VALIDATION
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<int> dist(0,8);
 
-    // Dummy implementation: Set the first 3 rows to 0
-    for (int r = 0; r < 3; r++) {
-        for (int c = 0; c < 9; c++) {
+        int r = dist(gen);
+        int c = dist(gen);
+
+        if(BOARD[r][c] != 0){
             BOARD[r][c] = 0;
+            count++;
         }
     }
+    
+    // Dummy implementation: Set the first 3 rows to 0
+    // for (int r = 0; r < 3; r++) {
+    //     for (int c = 0; c < 9; c++) {
+    //         BOARD[r][c] = 0;
+    //     }
+    // }
 }
 
 
@@ -250,21 +265,32 @@ int** generateBoard(const int& empty_boxes){
      */
 
     // Dummy implementation: Returning static sudoku board
-    int** BOARD = new int*[9];
-    BOARD[0] = new int[9] {0, 0, 4, 0, 5, 0, 0, 0, 0};
-    BOARD[1] = new int[9] {9, 0, 0, 7, 3, 4, 6, 0, 0};
-    BOARD[2] = new int[9] {0, 0, 3, 0, 2, 1, 0, 4, 9};
-    BOARD[3] = new int[9] {0, 3, 5, 0, 9, 0, 4, 8, 0};
-    BOARD[4] = new int[9] {0, 9, 0, 0, 0, 0, 0, 3, 0};
-    BOARD[5] = new int[9] {0, 7, 6, 0, 1, 0, 9, 2, 0};
-    BOARD[6] = new int[9] {3, 1, 0, 9, 7, 0, 2, 0, 0};
-    BOARD[7] = new int[9] {0, 0, 9, 1, 8, 2, 0, 0, 3};
-    BOARD[8] = new int[9] {0, 0, 0, 0, 6, 0, 1, 0, 0};
-
+    // int** BOARD = new int*[9];
+    // BOARD[0] = new int[9] {0, 0, 4, 0, 5, 0, 0, 0, 0};
+    // BOARD[1] = new int[9] {9, 0, 0, 7, 3, 4, 6, 0, 0};
+    // BOARD[2] = new int[9] {0, 0, 3, 0, 2, 1, 0, 4, 9};
+    // BOARD[3] = new int[9] {0, 3, 5, 0, 9, 0, 4, 8, 0};
+    // BOARD[4] = new int[9] {0, 9, 0, 0, 0, 0, 0, 3, 0};
+    // BOARD[5] = new int[9] {0, 7, 6, 0, 1, 0, 9, 2, 0};
+    // BOARD[6] = new int[9] {3, 1, 0, 9, 7, 0, 2, 0, 0};
+    // BOARD[7] = new int[9] {0, 0, 9, 1, 8, 2, 0, 0, 3};
+    // BOARD[8] = new int[9] {0, 0, 0, 0, 6, 0, 1, 0, 0};
+    int** BOARD = getEmptyBoard();
+    fillBoardWithIndependentBox(BOARD);
+    solveBoard(BOARD,0,0);
+    deleteRandomItems(BOARD,empty_boxes);
+    
     return BOARD;
 }
 
 int main(){
+    int** BOARD = generateBoard(45);
+    for (int i = 0; i < 9; i++) { // Outer loop for rows
+        for (int j = 0; j < 9; j++) { // Inner loop for columns
+            std::cout << BOARD[i][j] << " "; // Print element
+        }
+        std::cout << std::endl; // Newline after each row
+    }
 
     return 0;
 }
