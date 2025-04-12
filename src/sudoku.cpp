@@ -174,7 +174,32 @@ bool solveBoardEfficient(int** BOARD)
      * @param BOARD A 9x9 Sudoku board to be solved.
      * @return true if the board is successfully solved, false otherwise.
      */
-    return false; //temporary
+    // Get the next cell to fill using MRV heuristic
+    auto [row, col, options] = findNextCell(BOARD);
+    
+    // If no empty cells are found (row == -1), the board is solved
+    if (row == -1) {
+        return true;
+    }
+    
+    // Try placing numbers 1 to 9 in the selected cell
+    for (int k = 1; k <= 9; k++) {
+        if (isValid(BOARD, row, col, k)) {
+            // Place the number
+            BOARD[row][col] = k;
+            
+            // Recursively try to solve the rest of the board
+            if (solveBoardEfficient(BOARD)) {
+                return true;  // Solution found
+            }
+            
+            // Backtrack: remove the number if no solution is found
+            BOARD[row][col] = 0;
+        }
+    }
+    
+    // No valid number fits in this cell, trigger backtracking
+    return false;
 }
 
 bool solve(int** board, const bool& efficient) {
