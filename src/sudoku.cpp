@@ -78,8 +78,6 @@ bool solveBoard(int** BOARD, const int& r, const int& c)
     return false;
 }
 
-
-
 tuple<int, int, int> findNextCell(int** BOARD) {
     /**
      * @brief Finds the next empty cell using the Minimum Remaining Value (MRV) heuristic.
@@ -131,11 +129,30 @@ tuple<int, int, int> findNextCell(int** BOARD) {
              * - Track the cell with the minimum number of options.
              * - Implement early exit if a cell with only one option is found.
              */
+            if (BOARD[r][c] == 0) {  // Check if cell is empty
+                int optionsCount = 0;
+                for (int k = 1; k <= 9; k++) {
+                    if (isValid(BOARD, r, c, k)) {
+                        optionsCount++;
+                    }
+                }
+                
+                // Early exit if we find a cell with only one option
+                if (optionsCount == 1) {
+                    return {r, c, 1};
+                }
+                
+                // Update best cell if this one has fewer options
+                if (optionsCount > 0 && optionsCount < minOptions) {
+                    minOptions = optionsCount;
+                    bestRow = r;
+                    bestCol = c;
+                }
+            }
         }
     }
     return {bestRow, bestCol, minOptions};
 }
-
 
 bool solveBoardEfficient(int** BOARD)
 {
@@ -184,7 +201,6 @@ bool solveBoardEfficient(int** BOARD)
     // No valid number fits in this cell, trigger backtracking
     return false;
 }
-
 
 bool solve(int** board, const bool& efficient) {
     // TODO: Implement logic to select the appropriate solver based on the 'efficient' flag
