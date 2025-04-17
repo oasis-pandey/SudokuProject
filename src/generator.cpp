@@ -245,7 +245,7 @@ void deleteRandomItems(int** BOARD, const int& n) {
 // Finally return the board
 // Note you need add these function prototypes in generator.h files as well
 
-int** generateBoard(const int& empty_boxes){
+int** generateBoard(const int& empty_boxes) {
     /**
      * @brief Generates a solvable Sudoku board with a specified number of empty cells.
      *
@@ -281,16 +281,4 @@ int** generateBoard(const int& empty_boxes){
     deleteRandomItems(BOARD,empty_boxes);
     
     return BOARD;
-}
-
-int main(){
-    int** BOARD = generateBoard(45);
-    for (int i = 0; i < 9; i++) { // Outer loop for rows
-        for (int j = 0; j < 9; j++) { // Inner loop for columns
-            std::cout << BOARD[i][j] << " "; // Print element
-        }
-        std::cout << std::endl; // Newline after each row
-    }
-
-    return 0;
 }
