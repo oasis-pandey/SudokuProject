@@ -16,9 +16,13 @@ void deallocateBoard(int** BOARD, const int& rows) {
      * - Set BOARD to nullptr to avoid dangling pointers.
      */
 
-    if(BOARD){
+    if(BOARD!= nullptr){
         for(int i =0;i<rows; i++){
-            delete[] BOARD[i];
+            if(BOARD[i]!=nullptr){
+                delete[] BOARD[i];
+                BOARD[i]= nullptr;
+            }
+            
         }
         delete [] BOARD;
         BOARD = nullptr;
