@@ -6,7 +6,7 @@
 #include <filesystem>
 using namespace std;
 
-void deallocateBoard(int** BOARD, const int& rows) {
+void deallocateBoard(int**& BOARD, const int& rows) {
     // TODO: Implement memory deallocation for the 2D board
 
     /**
