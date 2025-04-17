@@ -135,25 +135,28 @@ void fillBoardWithIndependentBox(int** BOARD) {
      * - Top-Left, Center, and Bottom-Right boxes should be filled.
      * - Remaining cells should remain empty.
      */
+    vector<int>num1=getShuffledVector();
+    vector<int>num2=getShuffledVector();
+    vector<int>num3=getShuffledVector();
 
-    // Dummy implementation:
-    // Temporary static fill based on the provided example
-    int staticBoard[9][9] = {
-        {1, 5, 6, 0, 0, 0, 0, 0, 0},
-        {2, 4, 7, 0, 0, 0, 0, 0, 0},
-        {8, 3, 9, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 1, 7, 4, 0, 0, 0},
-        {0, 0, 0, 6, 2, 8, 0, 0, 0},
-        {0, 0, 0, 5, 9, 3, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 1, 6, 7},
-        {0, 0, 0, 0, 0, 0, 2, 5, 8},
-        {0, 0, 0, 0, 0, 0, 3, 4, 9}
-    };
-    // Dummy implementation:
-    // Copy static board to the provided BOARD
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            BOARD[i][j] = staticBoard[i][j];
+    int index=0;
+    for(int i=0; i<3; i++){
+        for(int j=0; j<3; j++){
+            BOARD[i][j]=num1[index++];
+        }
+    }
+
+    index=0;
+    for(int i=3; i<6; i++){
+        for(int j=3; j<6; j++){
+            BOARD[i][j]=num2[index++];
+        }
+    }
+
+    index=0;
+    for(int i=0; i<3; i++){
+        for(int j=0; j<3; j++){
+            BOARD[i][j]=num3[index++];
         }
     }
 }
