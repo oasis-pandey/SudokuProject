@@ -26,6 +26,18 @@ using namespace std;
 /**
   * TODO: Provide appropriate Documentation, see other examples provided within the projects
   */
+ /**
+ /**
+ * @brief Deallocates a dynamically allocated 2D board.
+ * 
+ * This function frees memory allocated for each row in the 2D array, then deallocates the array 
+ * of row pointers itself. Sets each pointer to nullptr.
+ * 
+ * @param BOARD Pointer to the 2D board to be deallocated.
+ * @param rows The number of rows in the board.
+ */
+
+
 void deallocateBoard(int** BOARD, const int& rows = 9);
 
 /**
