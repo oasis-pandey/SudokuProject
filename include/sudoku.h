@@ -39,8 +39,8 @@ bool solveBoard(int** BOARD, const int& r=0, const int& c=0);
 /**
   * TODO: Provide appropriate Documentation, see other examples provided within the projects
   */
-std::tuple<int, int, int> findNextCell(int** BOARD);
-/**
+
+  /**
  * @brief Finds the next empty cell using the Minimum Remaining Value (MRV) heuristic.
  * 
  * This function implements the MRV (Minimum Remaining Value) heuristic for Sudoku solving
@@ -60,8 +60,7 @@ std::tuple<int, int, int> findNextCell(int** BOARD);
  *         - Third element: Number of valid options for that cell
  *         Returns {-1, -1, INT_MAX} if no empty cells are found
  */
-
-bool solveBoardEfficient(int** BOARD);
+std::tuple<int, int, int> findNextCell(int** BOARD);
 
 /**
  * @brief Efficiently solves a Sudoku board using the Minimum Remaining Value (MRV) heuristic.
@@ -87,6 +86,19 @@ bool solveBoardEfficient(int** BOARD);
  * 
  * @param BOARD A pointer to the 9x9 Sudoku board to be solved
  * @return true if the board is successfully solved, false otherwise
+ */
+bool solveBoardEfficient(int** BOARD);
+
+
+/**
+ * @brief Solves a Sudoku board using the selected solving strategy.
+ * 
+ * Chooses between a basic solver and a more efficient solver based on the provided flag.
+ * If the `efficient` flag is true, it uses an optimized algorithm; otherwise, it uses a standard recursive approach.
+ * 
+ * @param board Pointer to the 2D Sudoku board to solve.
+ * @param efficient Flag indicating whether to use the efficient solver.
+ * @return True if the board was solved successfully; otherwise, false.
  */
 
 bool solve(int** board, const bool& efficient = false);
