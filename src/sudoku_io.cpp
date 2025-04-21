@@ -253,95 +253,78 @@ int** deepCopyBoard(int** original) {
 }
 
 void compareSudokuSolvers(const int& experiment_size, const int& empty_boxes) {
-    /**
-     * TODO:
-     * - Identify where in this function dynamically allocated memory (e.g., Sudoku boards) should be deallocated.
-     * - Use the `deallocateBoard()` function to free memory when:
-     *   1. The board is no longer needed (e.g., after solving or processing).
-     *   2. Before reassigning a pointer to a new board to avoid memory leaks.
-     *   3. Before returning from the function to ensure all allocated memory is freed.
-     *
-     * Example:
-     *   deallocateBoard(BOARD);  // Free memory allocated for the board
-     *
-     * Hints:
-     * - Always deallocate after you're done using the board.
-     * - Be mindful of potential memory leaks if the board isn't deallocated properly.
-     * - Set the pointer to nullptr after deallocation to avoid dangling pointers.
-     */
-    double totalTimeSolveBoard = 0.0;
-    double totalTimeEfficientSolveBoard = 0.0;
-
-    int validSolutionsSolveBoard = 0;
-    int validSolutionsEfficientSolveBoard = 0;
-
-    int** board1 = nullptr;
-    int** board2 = nullptr;
-    bool solved = false;
-
-    cout << "Running Sudoku Solver Comparisons...\n";
-
-    for (int i = 1; i <= experiment_size; ++i) {
-        // Generate a single board and deep copy
-        board1 = generateBoard(empty_boxes);  // Fresh board for efficient solver
-        if (!board1) {
-            cerr << "Failed to generate board.\n";
-            continue;
+    cout << "\n=== Comparing Sudoku Solvers ===" << endl;
+    cout << "Experiment Size: " << experiment_size << endl;
+    cout << "Empty Boxes: " << empty_boxes << endl;
+    cout << setfill('-') << setw(60) << "" << setfill(' ') << endl;
+    
+    // Initialize timing variables
+    double total_standard_time = 0.0;
+    double total_efficient_time = 0.0;
+    int successful_standard = 0;
+    int successful_efficient = 0;
+    
+    // Run experiments
+    for (int i = 0; i < experiment_size; i++) {
+        // Generate a new board for testing
+        int** board1 = generateBoard(empty_boxes);
+        int** board2 = deepCopyBoard(board1);
+        
+        // Time standard solver
+        auto start_standard = high_resolution_clock::now();
+        bool standard_solved = solveBoard(board1, 0, 0);
+        auto stop_standard = high_resolution_clock::now();
+        auto duration_standard = duration_cast<microseconds>(stop_standard - start_standard);
+        
+        // Time efficient solver
+        auto start_efficient = high_resolution_clock::now();
+        bool efficient_solved = solveBoardEfficient(board2);
+        auto stop_efficient = high_resolution_clock::now();
+        auto duration_efficient = duration_cast<microseconds>(stop_efficient - start_efficient);
+        
+        // Update statistics
+        if (standard_solved) {
+            total_standard_time += duration_standard.count();
+            successful_standard++;
         }
-        board2 = deepCopyBoard(board1);       // Deep copy for regular solver
-
-        // -------------------- Testing solveBoardEfficient --------------------
-        auto startEfficient = high_resolution_clock::now();
-        solved = solve(board1, true);  // Solve using efficient solver
-        auto endEfficient = high_resolution_clock::now();
-
-        double elapsedEfficient = duration<double>(endEfficient - startEfficient).count();
-        totalTimeEfficientSolveBoard += elapsedEfficient;
-
-        // Validate solution
-        if (solved && checkIfSolutionIsValid(board1)) {
-            validSolutionsEfficientSolveBoard++;
-        } else {
-            cerr << "solveBoardEfficient produced an invalid solution.\n";
+        if (efficient_solved) {
+            total_efficient_time += duration_efficient.count();
+            successful_efficient++;
         }
-
-
-        // -------------------- Testing solveBoard --------------------
-        auto startSolve = high_resolution_clock::now();
-        solved = solve(board2);  // Solve using basic solver
-        auto endSolve = high_resolution_clock::now();
-
-        double elapsedSolve = duration<double>(endSolve - startSolve).count();
-        totalTimeSolveBoard += elapsedSolve;
-
-        // Validate solution
-        if (solved && checkIfSolutionIsValid(board2)) {
-            validSolutionsSolveBoard++;
-        } else {
-            cerr << "solveBoard produced an invalid solution.\n";
-        }
-
-        // -------------------- Progress Bar Update --------------------
-        displayProgressBar(i, experiment_size);
+        
+        // Clean up
+        deallocateBoard(board1, 9);
+        deallocateBoard(board2, 9);
+        
+        // Display progress
+        displayProgressBar(i + 1, experiment_size);
     }
-
-    cout << endl;  // Move to the next line after progress bar is done.
-
-    // -------------------- Summary --------------------
-    cout << "====================== Performance Summary (Empty Boxes: " << empty_boxes << ") ======================" << endl;
-    cout << "Total Experiments: " << experiment_size << endl;
-    cout << "-------------------------------------------------------------" << endl;
-
-    cout << "solveBoard average time: " << fixed << setprecision(4)
-         << 1000 * (totalTimeSolveBoard / experiment_size) << " milliseconds" << endl;
-    cout << "solveBoard valid solutions: " << validSolutionsSolveBoard << "/" << experiment_size << endl;
-
-    cout << "-------------------------------------------------------------" << endl;
-
-    cout << "efficientSolveBoard average time: " << fixed << setprecision(4)
-         << 1000 * (totalTimeEfficientSolveBoard / experiment_size) << " milliseconds" << endl;
-    cout << "efficientSolveBoard valid solutions: " << validSolutionsEfficientSolveBoard << "/" << experiment_size << endl;
-
-    cout << "===========================================================================" << endl;
+    cout << endl;  // New line after progress bar
+    
+    // Calculate averages
+    double avg_standard_time = successful_standard > 0 ? total_standard_time / successful_standard : 0;
+    double avg_efficient_time = successful_efficient > 0 ? total_efficient_time / successful_efficient : 0;
+    
+    // Display results
+    cout << "\nResults:" << endl;
+    cout << setfill('-') << setw(60) << "" << setfill(' ') << endl;
+    cout << setw(20) << "Metric" << setw(20) << "Standard" << setw(20) << "Efficient" << endl;
+    cout << setfill('-') << setw(60) << "" << setfill(' ') << endl;
+    
+    cout << setw(20) << "Success Rate" 
+         << setw(20) << (static_cast<double>(successful_standard) / experiment_size * 100) << "%"
+         << setw(20) << (static_cast<double>(successful_efficient) / experiment_size * 100) << "%" << endl;
+    
+    cout << setw(20) << "Avg Time (μs)" 
+         << setw(20) << fixed << setprecision(2) << avg_standard_time
+         << setw(20) << fixed << setprecision(2) << avg_efficient_time << endl;
+    
+    if (avg_standard_time > 0 && avg_efficient_time > 0) {
+        double speedup = avg_standard_time / avg_efficient_time;
+        cout << setw(20) << "Speedup Factor" 
+             << setw(20) << "1.00x" 
+             << setw(20) << fixed << setprecision(2) << speedup << "x" << endl;
+    }
+    
+    cout << setfill('-') << setw(60) << "" << setfill(' ') << endl;
 }
-
