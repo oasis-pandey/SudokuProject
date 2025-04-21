@@ -205,6 +205,9 @@ void fillBoardWithIndependentBox(int** BOARD) {
 
 // Function to randomly delete 'n' items from a 9x9 Sudoku board using bitsets
 void deleteRandomItems(int** BOARD, const int& n) {
+    if (n < 1 || n > 81) {
+        throw std::invalid_argument("Number of cells to delete must be between 1 and 81");
+    }
     // TODO: Implement logic to delete 'n' random cells from the board
     /**
      * TODO:
