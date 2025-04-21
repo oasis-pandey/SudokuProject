@@ -1,1 +1,0 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/SudokuProject.dir/main.cpp.o CMakeFiles/SudokuProject.dir/src/sudoku.cpp.o CMakeFiles/SudokuProject.dir/src/sudoku_io.cpp.o CMakeFiles/SudokuProject.dir/src/generator.cpp.o CMakeFiles/SudokuProject.dir/src/utils.cpp.o -o SudokuProject

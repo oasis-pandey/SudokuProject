@@ -1,3 +1,0 @@
-/Users/oasis/Desktop/SudokuSolver/VenomDaoistSudokuProjectCS2308SPRING2025/build/CMakeFiles/SudokuProject.dir
-/Users/oasis/Desktop/SudokuSolver/VenomDaoistSudokuProjectCS2308SPRING2025/build/CMakeFiles/edit_cache.dir
-/Users/oasis/Desktop/SudokuSolver/VenomDaoistSudokuProjectCS2308SPRING2025/build/CMakeFiles/rebuild_cache.dir
