@@ -26,11 +26,35 @@
 /**
   * TODO: Provide appropriate Documentation, see other examples provided within the projects
   */
+ /**
+ * @brief Checks whether placing a number is valid on a Sudoku board.
+ * 
+ * Verifies if the given number `k` can be placed at position (r, c) by ensuring
+ * it does not already exist in the same row, column, or 3x3 subgrid.
+ * 
+ * @param BOARD Pointer to the 2D Sudoku board.
+ * @param r Row index of the cell to check.
+ * @param c Column index of the cell to check.
+ * @param k The number to validate for placement.
+ * @return True if placing `k` at (r, c) is valid; otherwise, false.
+ */
+
 bool isValid(int** BOARD, const int& r, const int& c, const int& k);
 
 /**
   * TODO: Provide appropriate Documentation, see other examples provided within the projects
   */
+ /**
+ * @brief Solves a Sudoku board using backtracking.
+ * 
+ * Recursively fills empty cells starting from (r, c) by trying numbers 1–9 and backtracking when needed.
+ * 
+ * @param BOARD Pointer to the 2D Sudoku board.
+ * @param r Current row index.
+ * @param c Current column index.
+ * @return True if the board is successfully solved; otherwise, false.
+ */
+
 bool solveBoard(int** BOARD, const int& r=0, const int& c=0);
 
 // ========================= Efficient Solutions ==========================
