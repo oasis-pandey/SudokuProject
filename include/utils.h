@@ -34,7 +34,7 @@ using namespace std;
  */
 
 
-void deallocateBoard(int** BOARD, const int& rows = 9);
+void deallocateBoard(int**& BOARD, const int& rows = 9);
 
 /**
  * @brief Creates a folder at the specified path if it does not exist.
