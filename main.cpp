@@ -7,7 +7,7 @@
 using namespace std;
 
 // Define DEBUG_MODE to enable debug main, comment following to run the actual program
-#define DEBUG_MODE
+// #define DEBUG_MODE
 
 string PATH_TO_PUZZLES = "data/puzzles/";
 string PATH_TO_SOLUTIONS = "data/solutions/";
@@ -35,7 +35,7 @@ int COMPLEXITY_EMPTY_BOXES = 45;
 int main() {
     // You can modify this main function to access all other function implemented
     //
-    cout<< "Oasis" << endl;
+    cout<< "RUNNING IN DEBUG MODE" << endl;
     return 0;
 }
 #else
