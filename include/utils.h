@@ -24,10 +24,6 @@
 using namespace std;
 
 /**
-  * TODO: Provide appropriate Documentation, see other examples provided within the projects
-  */
- /**
- /**
  * @brief Deallocates a dynamically allocated 2D board.
  * 
  * This function frees memory allocated for each row in the 2D array, then deallocates the array 

@@ -23,9 +23,7 @@
 
 #include <iostream>
 
-/**
-  * TODO: Provide appropriate Documentation, see other examples provided within the projects
-  */
+
  /**
  * @brief Checks whether placing a number is valid on a Sudoku board.
  * 
@@ -41,9 +39,7 @@
 
 bool isValid(int** BOARD, const int& r, const int& c, const int& k);
 
-/**
-  * TODO: Provide appropriate Documentation, see other examples provided within the projects
-  */
+
  /**
  * @brief Solves a Sudoku board using backtracking.
  * 
@@ -60,9 +56,7 @@ bool solveBoard(int** BOARD, const int& r=0, const int& c=0);
 // ========================= Efficient Solutions ==========================
 
 
-/**
-  * TODO: Provide appropriate Documentation, see other examples provided within the projects
-  */
+
 
   /**
  * @brief Finds the next empty cell using the Minimum Remaining Value (MRV) heuristic.
