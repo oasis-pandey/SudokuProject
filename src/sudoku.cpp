@@ -16,6 +16,7 @@
 #include "../include/sudoku.h"
 #include <iostream>
 #include <tuple>
+#include <climits>
 using namespace std;
 
 bool isValid(int** BOARD, const int& r, const int& c, const int& k)
