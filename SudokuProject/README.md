@@ -55,7 +55,7 @@ The program will:
 1. Generate a specified number of Sudoku puzzles
 2. Solve the generated puzzles
 3. Save both puzzles and solutions to files
-4. Run performance comparisons between different solving algorithms
+4. Run performance comparisons between SolveBoard and SolveBoardEfficient
 
 ## Configuration
 
