@@ -66,7 +66,7 @@
 
     std::shuffle(nums.begin(), nums.end(), g); // Shuffle the vector
 
-    return nums; // Return shuffled vector
+    return nums; 
 }
 
  
@@ -227,7 +227,7 @@ void fillBoardWithIndependentBox(int** BOARD) {
      */
     int count = 0;
     while(count < n){
-        // ADD VALIDATION
+        
         random_device rd;
         mt19937 gen(rd());
         uniform_int_distribution<int> dist(0,8);

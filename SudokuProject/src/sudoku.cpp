@@ -81,12 +81,12 @@ bool solveBoard(int** BOARD, const int& r, const int& c)
 
 
 tuple<int, int, int> findNextCell(int** BOARD) {
-    int minOptions = 10; // More than maximum possible (9)
+    int minOptions = 10; // More than max i.e 9
     int bestRow = -1, bestCol = -1;
 
     for (int r = 0; r < 9; r++) {
         for (int c = 0; c < 9; c++) {
-            if (BOARD[r][c] == 0) {  // Check if cell is empty
+            if (BOARD[r][c] == 0) {  
                 int optionsCount = 0;
                 for (int k = 1; k <= 9; k++) {
                     if (isValid(BOARD, r, c, k)) {
@@ -94,18 +94,18 @@ tuple<int, int, int> findNextCell(int** BOARD) {
                     }
                 }
                 
-                // If we find a cell with no valid options, the board is unsolvable
+                
                 if (optionsCount == 0) {
-                    return {r, c, 0}; // Immediately signal an unsolvable state
+                    return {r, c, 0};
                 }
                 
-                // Update best cell if this one has fewer options
+                
                 if (optionsCount < minOptions) {
                     minOptions = optionsCount;
                     bestRow = r;
                     bestCol = c;
                     
-                    // Early exit is optional but can improve performance
+                    
                     if (optionsCount == 1) {
                         return {r, c, 1};
                     }
@@ -117,36 +117,36 @@ tuple<int, int, int> findNextCell(int** BOARD) {
 }
 
 bool solveBoardEfficient(int** BOARD) {
-    // Get the next cell to fill using MRV heuristic
+    
     auto [row, col, options] = findNextCell(BOARD);
     
-    // If no empty cells are found (row == -1), the board is solved
+    
     if (row == -1) {
         return true;
     }
     
-    // If a cell has no valid options (options == 0), the board is unsolvable
+    
     if (options == 0) {
         return false;
     }
     
-    // Try placing numbers 1 to 9 in the selected cell
+    
     for (int k = 1; k <= 9; k++) {
         if (isValid(BOARD, row, col, k)) {
-            // Place the number
+            
             BOARD[row][col] = k;
             
-            // Recursively try to solve the rest of the board
+            
             if (solveBoardEfficient(BOARD)) {
-                return true;  // Solution found
+                return true;  
             }
             
-            // Backtrack: remove the number if no solution is found
+            
             BOARD[row][col] = 0;
         }
     }
     
-    // No valid number fits in this cell, trigger backtracking
+    
     return false;
 }
 
