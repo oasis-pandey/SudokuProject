@@ -17,7 +17,7 @@ This project implements a comprehensive Sudoku puzzle system that can:
 - **Performance Comparison**: Compare the efficiency of different solving algorithms
 - **File I/O Operations**: Save puzzles and solutions to files 
 - **Debug Mode**: Special debug mode for testing and development (comment #define DEBUG_MODE to run the actual program)
-- **Configurable Parameters**: Adjust puzzle complexity and number of puzzles to generate
+- **Configurable Parameters**: Adjust number of puzzles to generate
 
 ## Project Structure
 
