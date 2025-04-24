@@ -6,7 +6,7 @@
 #include <filesystem>
 using namespace std;
 
-void deallocateBoard(int**& BOARD, const int& rows) {
+void deallocateBoard(int** BOARD, const int& rows) {
     // TODO: Implement memory deallocation for the 2D board
 
     /**
@@ -15,7 +15,6 @@ void deallocateBoard(int**& BOARD, const int& rows) {
      * - Deallocate the array of row pointers using delete[].
      * - Set BOARD to nullptr to avoid dangling pointers.
      */
-
     if(BOARD!= nullptr){
         for(int i =0;i<rows; i++){
             if(BOARD[i]!=nullptr){

@@ -50,7 +50,7 @@ echo "------------COMPILATION DONE------------"
 echo "----------------------------------------"
 
 # Get the project folder name
-PROJECT_NAME="SudokuProject"
+PROJECT_NAME=$(basename "$PROJECT_DIR")
 echo "Project Name: $PROJECT_NAME"
 
 # Define build path based on environment

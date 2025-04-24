@@ -16,7 +16,6 @@
 #include "../include/sudoku.h"
 #include <iostream>
 #include <tuple>
-#include <climits>
 using namespace std;
 
 bool isValid(int** BOARD, const int& r, const int& c, const int& k)
@@ -78,6 +77,8 @@ bool solveBoard(int** BOARD, const int& r, const int& c)
     // Trigger backtracking if no valid number can be placed
     return false;
 }
+
+
 
 tuple<int, int, int> findNextCell(int** BOARD) {
     /**
@@ -175,6 +176,7 @@ bool solveBoardEfficient(int** BOARD)
      * @param BOARD A 9x9 Sudoku board to be solved.
      * @return true if the board is successfully solved, false otherwise.
      */
+    
     // Get the next cell to fill using MRV heuristic
     auto [row, col, options] = findNextCell(BOARD);
     
