@@ -10,6 +10,13 @@ This project implements a comprehensive Sudoku puzzle system that can:
 - Compare the performance of solveBoard and SolveBoardEfficient.
 - Save and load puzzles and their solutions
 
+## Objectives
+- Generate valid Sudoku puzzles and solve them using backtrcking(solveBoard) and MRV technique(solveBoardEfficient).
+- Compare the average solving tome of solveBoard and solveBoardEfficient.
+- Proper management of memory by dynamically allocating memory, deallocating memory when done, checking for any memory leaks and  dangling pointers.
+- Provide DEBUG_MODE for testing and NON-DEBUG_MODE for running the final completed project.
+
+
 ## Features
 
 - **Puzzle Generation**: Generate valid Sudoku puzzles 
@@ -56,14 +63,6 @@ The program will:
 2. Solve the generated puzzles
 3. Save both puzzles and solutions to files
 4. Run performance comparisons between SolveBoard and SolveBoardEfficient
-
-## Configuration
-
-You can modify the following parameters in `main.cpp`:
-- `NUM_PUZZLE_TO_GENERATE`: Number of puzzles to generate
-- `COMPLEXITY_EMPTY_BOXES`: Difficulty level (number of empty cells)
-- `PATH_TO_PUZZLES`: Directory for puzzle files
-- `PATH_TO_SOLUTIONS`: Directory for solution files
 
 ## Debug Mode
 
