@@ -1,6 +1,6 @@
 # Sudoku Solver Project - VenomDaoistSudokuProjectCS2308SPRING2025
 
-This project is a Sudoku puzzle generator and solver which is implemented in C++. It has mainly two solving algorithms: SolveBoard which is like a bruteforce approach and a SolveBoardEfficient which uses backtracking algorithm and cleverly selects the sudoku grid with the lowest possible options. At the end,it compares the solveBoard and solveBoardEfficient with different sample sizes.
+This project is a Sudoku puzzle generator and solver which is implemented in C++. It has mainly two solving algorithms: SolveBoard which is like a bruteforce approach and uses simple backtracking algorithm and a SolveBoardEfficient which uses Minimum Remaining Values(MRV) technique and cleverly selects the sudoku grid with the lowest possible options. At the end,it compares the solveBoard and solveBoardEfficient with different sample sizes.
 
 ## Project Overview
 
