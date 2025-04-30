@@ -24,8 +24,15 @@
 using namespace std;
 
 /**
-  * TODO: Provide appropriate Documentation, see other examples provided within the projects
-  */
+ * @brief Deallocates memory for a dynamically allocated Sudoku board.
+ *
+ * Frees the memory allocated for a 2D Sudoku board. First deallocates each row,
+ * then deallocates the array of row pointers. Handles boards of any size but
+ * defaults to 9x9 for standard Sudoku.
+ *
+ * @param BOARD A pointer to the 2D Sudoku board (int**).
+ * @param rows Number of rows in the board (default: 9).
+ */
 void deallocateBoard(int** BOARD, const int& rows = 9);
 
 /**
